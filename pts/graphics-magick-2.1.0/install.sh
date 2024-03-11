@@ -10,7 +10,7 @@ if [ $OS_TYPE = "BSD" ]
 then
 	gmake -j $NUM_CPU_CORES
 else
-	make -j $NUM_CPU_CORES
+  (time make -j $NUM_CPU_CORES) 2>&1 | grep real | cut -f2 > "$COMPILE_TIME_PATH/compile_time_${NUM_CPU_CORES}_cores_GraphicsMagick-1.3.38"
 fi
 
 echo $? > ~/install-exit-status

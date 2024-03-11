@@ -1,7 +1,7 @@
 #!/bin/sh
 tar -xvf zstd-1.5.4.tar.gz
 cd zstd-1.5.4
-make -j $NUM_CPU_CORES
+(time make -j $NUM_CPU_CORES) 2>&1 | grep real | cut -f2 > "$COMPILE_TIME_PATH/compile_time_${NUM_CPU_CORES}_cores_zstd"
 echo $? > ~/install-exit-status
 cd ~
 TASKSET="taskset -c 1"

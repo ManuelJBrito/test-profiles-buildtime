@@ -1,8 +1,8 @@
 #!/bin/sh
 tar -xf aircrack-ng-1.7.tar.gz
 cd aircrack-ng-1.7
-export CFLAGS="-O3 -fcommon $CFLAGS"
-export CXXFLAGS="-O3 -fcommon $CXFLAGS"
+# export CFLAGS="-O3 -fcommon $CFLAGS"
+# export CXXFLAGS="-O3 -fcommon $CXFLAGS"
 if [ "$OS_TYPE" = "BSD" ]
 then
 	if [ -e /usr/local/lib/libcrypto.so ]
@@ -14,7 +14,7 @@ then
 	gmake -j $NUM_CPU_CORES
 else
 	./autogen.sh
-	make -j $NUM_CPU_CORES
+  (time make -j $NUM_CPU_CORES) 2>&1 | grep real | cut -f2 > "$COMPILE_TIME_PATH/compile_time_${NUM_CPU_CORES}_cores_aircrack"
 fi
 echo $? > ~/install-exit-status
 

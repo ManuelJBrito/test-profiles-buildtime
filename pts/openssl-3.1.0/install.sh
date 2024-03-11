@@ -2,7 +2,7 @@
 tar -xf openssl-3.1.0.tar.gz
 cd openssl-3.1.0
 ./config no-zlib
-make -j $NUM_CPU_CORES
+(time make -j $NUM_CPU_CORES) 2>&1 | grep real | cut -f2 > "$COMPILE_TIME_PATH/compile_time_${NUM_CPU_CORES}_cores_openssl"
 echo $? > ~/install-exit-status
 cd ~
 TASKSET="taskset -c 1"

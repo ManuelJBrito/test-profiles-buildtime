@@ -10,7 +10,7 @@ then
 	gmake -j $NUM_CPU_CORES
 	echo $? > ~/install-exit-status
 else
-	make -j $NUM_CPU_CORES
+(time make -j $NUM_CPU_CORES) 2>&1 | grep real | cut -f2 > "$COMPILE_TIME_PATH/compile_time_${NUM_CPU_CORES}_cores_primesieve"
 	echo $? > ~/install-exit-status
 fi
 cd ~
