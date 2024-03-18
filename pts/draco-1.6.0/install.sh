@@ -4,7 +4,7 @@ cd draco-1.5.6
 mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
-(time make -j $NUM_CPU_CORES) 2>&1 | grep real | cut -f2 > "$COMPILE_TIME_PATH/compile_time_${NUM_CPU_CORES}_cores_draco"
+make -j $NUM_CPU_CORES
 echo $? > ~/install-exit-status
 cd ~
 unzip -o church-facade-ply.zip
