@@ -18,7 +18,7 @@ if [ $OS_TYPE = "BSD" ]
 then
 	gmake -j $NUM_CPU_CORES ENABLE_MULTITHREAD=-Denablemultithread
 else
-  (time make -j $NUM_CPU_CORES) 2>&1 | grep real | cut -f2 > "$COMPILE_TIME_PATH/compile_time_${NUM_CPU_CORES}_cores_mafft"
+	make -j $NUM_CPU_CORES ENABLE_MULTITHREAD=-Denablemultithread
 fi
 
 echo $? > ~/install-exit-status

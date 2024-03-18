@@ -7,7 +7,7 @@ cd ~/redis-7.0.4/deps
 make hiredis jemalloc linenoise lua
 
 cd ~/redis-7.0.4
-(time make MALLOC=libc -j $NUM_CPU_CORES) 2>&1 | grep real | cut -f2 > "$COMPILE_TIME_PATH/compile_time_${NUM_CPU_CORES}_cores_redis"
+make MALLOC=libc -j $NUM_CPU_CORES
 echo $? > ~/install-exit-status
 
 TASKSET="taskset -c 1"

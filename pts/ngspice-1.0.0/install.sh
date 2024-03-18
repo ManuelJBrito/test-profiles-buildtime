@@ -5,7 +5,7 @@ tar -xf iscas85Circuits-1.tar.xz
 
 cd ngspice-34
 ./configure
-(time make) 2>&1 | grep real | cut -f2 > "$COMPILE_TIME_PATH/compile_time_${NUM_CPU_CORES}_cores_ngspice-34"
+make -j $NUM_CPU_CORES
 echo $? > ~/install-exit-status
 cd ~
 TASKSET="taskset -c 1"

@@ -4,7 +4,7 @@ tar -xf espeak-ng-1.51.tar.gz
 cd espeak-ng-1.51
 ./autogen.sh
 ./configure --prefix=$HOME/espeak_
-(time make) 2>&1 | grep real | cut -f2 > "$COMPILE_TIME_PATH/compile_time_${NUM_CPU_CORES}_cores_espeak"
+make # build seems to have problems with multiple cores
 echo $? > ~/install-exit-status
 make install
 cd ~

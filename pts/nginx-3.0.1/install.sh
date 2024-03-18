@@ -3,8 +3,8 @@ mkdir $HOME/nginx_
 tar -xf http-test-files-1.tar.xz
 tar -xf nginx-1.23.3.tar.gz
 cd nginx-1.23.3
-CFLAGS="-Wno-error -march=native $CFLAGS" CXXFLAGS="-Wno-error -march=native $CFLAGS" ./configure --prefix=$HOME/nginx_ --without-http_rewrite_module --without-http-cache  --with-http_ssl_module
-(time make -j $NUM_CPU_CORES) 2>&1 | grep real | cut -f2 > "$COMPILE_TIME_PATH/compile_time_${NUM_CPU_CORES}_cores_nginx"
+CFLAGS="-Wno-error -O3 -march=native $CFLAGS" CXXFLAGS="-Wno-error -O3 -march=native $CFLAGS" ./configure --prefix=$HOME/nginx_ --without-http_rewrite_module --without-http-cache  --with-http_ssl_module
+make -j $NUM_CPU_CORES
 echo $? > ~/install-exit-status
 make install
 cd ~
@@ -19,7 +19,7 @@ sed -i "38 i ssl_ciphers          HIGH:!aNULL:!MD5;" nginx_/conf/nginx.conf
 rm -rf wrk-4.2.0
 tar -xf wrk-4.2.0.tar.gz
 cd wrk-4.2.0
-(time make -j $NUM_CPU_CORES) 2>&1 | grep real | cut -f2 >> "$COMPILE_TIME_PATH/compile_time_${NUM_CPU_CORES}_cores_nginx"
+make -j $NUM_CPU_CORES
 echo $? > ~/install-exit-status
 cd ~
 mv -f http-test-files/* nginx_/html/

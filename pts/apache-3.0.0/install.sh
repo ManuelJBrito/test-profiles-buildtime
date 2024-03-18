@@ -14,7 +14,7 @@ then
 	gmake install
 	echo $? > ~/install-exit-status
 else
-	(time make -j $NUM_CPU_CORES) 2>&1 | grep real | cut -f2 > "$COMPILE_TIME_PATH/compile_time_${NUM_CPU_CORES}_cores_apache"
+	make -j $NUM_CPU_CORES
 	make install
 	echo $? > ~/install-exit-status
 fi
@@ -39,7 +39,7 @@ patch -p0 < CHANGE-PORT.patch
 rm -rf wrk-4.2.0
 tar -xf wrk-4.2.0.tar.gz
 cd wrk-4.2.0
-(time make -j $NUM_CPU_CORES) 2>&1 | grep real | cut -f2 >> "$COMPILE_TIME_PATH/compile_time_${NUM_CPU_CORES}_cores_apache"
+make -j $NUM_CPU_CORES
 echo $? > ~/install-exit-status
 cd ~
 TASKSET="taskset -c 1"

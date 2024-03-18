@@ -7,8 +7,7 @@ cd libjxl-0.7.0
 mkdir build
 cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
-
-(time cmake --build . -- -j $NUM_CPU_CORES) 2>&1 | grep real | cut -f2 > "$COMPILE_TIME_PATH/compile_time_${NUM_CPU_CORES}_cores_libjxl"
+cmake --build . -- -j $NUM_CPU_CORES
 echo $? > ~/install-exit-status
 
 TASKSET="taskset -c 1"
